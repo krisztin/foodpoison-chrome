@@ -7,20 +7,26 @@ let rating = 0
 const deliverooRestaurantName = document.querySelector('.restaurant__name')
   .innerText
 const restaurantChopLocation = deliverooRestaurantName.indexOf('-')
-//-1 to remove space
+  //-1 to remove space
 const restaurantName = deliverooRestaurantName.slice(0, restaurantChopLocation - 1
 )
 
-// RESTAURANT ADDRESS variables
+// RESTAURANT POSTCODE variables
 // FSA's API takes either a street address OR a postcode in proper format which Deliveroo does not provide
 // see the whole rant in the readme.md
 const deliverooAddress = document.querySelector('.address').innerText
-const addressChopLocation = deliverooAddress.indexOf(',')
-const restaurantAddress = deliverooAddress.slice(0, addressChopLocation)
+const postcodeChopLocation = deliverooAddress.lastIndexOf(',')
+  // +2 to remove space
+const deliverooPostcode = deliverooAddress.slice(postcodeChopLocation+2)
+  // credit to Borodin on Stackoverflow for this regex
+let fragments = deliverooPostcode.match(/^([A-Z]{1,2}\d{1,2}[A-Z]?)\s*(\d[A-Z]{2})$/)
+fragments.shift()
+const postcode = fragments.join(' ')
+
 
 // CALL TO FSA API
 fetch(
-  `${apiURL}?name=${restaurantName}&address=${restaurantAddress}&pageSize=1`,
+  `${apiURL}?name=${restaurantName}&address=${postcode}&pageSize=1`,
   {
     method: 'GET',
     mode: 'cors',
@@ -41,6 +47,7 @@ fetch(
 // GETTING THE IMAGE CORRESPONDING WITH RATING
 function getImage(rating) {
   let imgFile = ""
+  const cloudURL = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_'
   const [
     imgFileEN0,
     imgFileEN1,
@@ -49,12 +56,12 @@ function getImage(rating) {
     imgFileEN4,
     imgFileEN5
   ] = [
-    'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_0_en-gb_ikdvg0.jpg',
-    'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_1_en-gb_sixnb5.jpg',
-    'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_2_en-gb_x7tzxo.jpg',
-    'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_3_en-gb_k4r8cm.jpg',
-    'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_4_en-gb_qyjebk.jpg',
-    'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_5_en-gb_dut0hk.jpg'
+    cloudURL + '0_en-gb_ikdvg0.jpg',
+    cloudURL + '1_en-gb_sixnb5.jpg',
+    cloudURL + '2_en-gb_x7tzxo.jpg',
+    cloudURL + '3_en-gb_k4r8cm.jpg',
+    cloudURL + '4_en-gb_qyjebk.jpg',
+    cloudURL + '5_en-gb_dut0hk.jpg'
   ]
 
   // Pair up image file with rating - en-GB ratings
