@@ -1,4 +1,4 @@
-# Am I getting food poisoning?
+# Am I getting food poisoning? :taco: :nauseated_face:
 
 A Chrome Extension checking the Food Standards Agency's ratings on Deliveroo so you know what to expect :nauseated_face:
 
@@ -10,7 +10,7 @@ A Chrome Extension checking the Food Standards Agency's ratings on Deliveroo so 
 
 3, get the rating and display it somewhere on the deliveroo menu page
 
-## Dev Diary :book:
+## :book: Dev Diary
 
 ### Day 0 - Why am I doing this?
 
@@ -99,9 +99,40 @@ After a little fiddling with cloud storage and some agonising over whether to us
 ![Food Standards Agency's rating image displayed on Burger King's Deliveroo page](https://res.cloudinary.com/du2vvjrb5/image/upload/v1569250206/blog/success_j78y07.png)
 
 
-Quick rundown on what I've managed to accomplish today:
+#### :poop: Today's Challenge:
+
+You know how I've decided to go for the address instead of mucking around with trying to reformat the postcodes? Well...
+
+It works marvelously with a "proper address"
+
+```
+const deliverooAddress = document.querySelector('.address').innerText
+// for example this would be "129 Nelson Street Tradeston, Glasgow, G58DZ"
+
+let chopLocation = deliverooAddress.indexOf(",")
+const restaurantAddress = deliverooAddress.slice(0,chopLocation)
+// so in the end I'd get "129 Nelson Street Tradeston" which works great with the FSA API
+
+```
+
+Not so much with a very layered one:
+
+```
+const deliverooAddress = document.querySelector('.address').innerText
+// this could be "Unit 27, Ground Floor, Mermaid Quay, Cardiff, CF105BZ"
+
+let chopLocation = deliverooAddress.indexOf(",")
+const restaurantAddress = deliverooAddress.slice(0,chopLocation)
+// so yeah, "Unit 27" is not really helpful for the API
+
+```
+
+This was **exactly** what I've wanted to avoid: spending at least an hour immersing myself in the magical wonders of the UK postcode system. Thanks to our lord and saviour Stackoverflow, Regex and a person going by the name of [Borodin](https://stackoverflow.com/questions/10700950/reformat-string-containing-uk-postcode-using-regex), in the end, this turned into a rather uncomplicated matter.
+
+#### Quick rundown on what I've managed to accomplish today:
 - Created a content script (script that runs when you are on a /menu page on Deliveroo)
 - Uploaded the FSA rating pics from 0-5 to Cloudinary and added a function to display them in the *restaurant description* section.
+- Changed to be postcode based instead of address based
 
 What's left?
 - Need to display something when the restaurant is not yet in FSA's database (order at your own peril )
