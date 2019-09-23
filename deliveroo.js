@@ -47,21 +47,32 @@ fetch(
 // GETTING THE IMAGE CORRESPONDING WITH RATING
 function getImage(rating) {
   let imgFile = ""
-  const cloudURL = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_'
+  const cloudURLen = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_'
+  const cloudURLsc = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569264600/fsa-gb/fhis_'
   const [
     imgFileEN0,
     imgFileEN1,
     imgFileEN2,
     imgFileEN3,
     imgFileEN4,
-    imgFileEN5
+    imgFileEN5,
+    imgFilePass,
+    imgFileImp,
+    imgFileAwaitPub,
+    imgFileAwaitInsp,
+    imgFileExempt
   ] = [
-    cloudURL + '0_en-gb_ikdvg0.jpg',
-    cloudURL + '1_en-gb_sixnb5.jpg',
-    cloudURL + '2_en-gb_x7tzxo.jpg',
-    cloudURL + '3_en-gb_k4r8cm.jpg',
-    cloudURL + '4_en-gb_qyjebk.jpg',
-    cloudURL + '5_en-gb_dut0hk.jpg'
+    cloudURLen + '0_en-gb_ikdvg0.jpg',
+    cloudURLen + '1_en-gb_sixnb5.jpg',
+    cloudURLen + '2_en-gb_x7tzxo.jpg',
+    cloudURLen + '3_en-gb_k4r8cm.jpg',
+    cloudURLen + '4_en-gb_qyjebk.jpg',
+    cloudURLen + '5_en-gb_dut0hk.jpg',
+    cloudURLsc + 'fhis_pass_d82nu0.jpg',
+    cloudURLsc + 'fhis_improvement_required_gpotup.jpg',
+    cloudURLsc + 'awaiting_publication_f90cf0.jpg',
+    cloudURLsc + 'awaiting_inspection_meltsi.jpg',
+    cloudURLsc + 'exempt_b5qzkj.jpg'
   ]
 
   // Pair up image file with rating - en-GB ratings
@@ -88,6 +99,26 @@ function getImage(rating) {
       break
     case '5':
       imgFile = imgFileEN5
+      displayImg()
+      break
+    case 'Pass':
+      imgFile = imgFilePass
+      displayImg()
+      break
+    case 'Improvement Required':
+      imgFile = imgFileImp
+      displayImg()
+      break
+    case 'Awaiting Publication':
+      imgFile = imgFileAwaitPub
+      displayImg()
+      break
+    case 'Awaiting Inspection':
+      imgFile = imgFileAwaitInsp
+      displayImg()
+      break
+    case 'Exempt':
+      imgFile = imgFileExempt
       displayImg()
       break
     default:
