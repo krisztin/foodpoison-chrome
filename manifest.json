@@ -2,7 +2,10 @@
   "name": "Am I getting food poisoning?",
   "version": "1.0",
   "description": "See the Food Standards Agency rating before ordering on Deliveroo",
-  "permissions": ["declarativeContent", "storage", "activeTab"],
+  "content_scripts": [{
+    "matches": ["https://deliveroo.co.uk/menu/*"],
+    "js": ["deliveroo.js"]
+  }],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
