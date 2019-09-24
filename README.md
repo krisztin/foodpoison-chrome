@@ -1,22 +1,28 @@
 # Am I getting food poisoning? :taco: :nauseated_face:
 
-A Chrome Extension checking the Food Standards Agency's ratings on Deliveroo so you know what to expect :nauseated_face:
+Spend less time on the :toilet:	loo and more time enjoying the amazing variety of cuisines available in the UK :taco: :pizza: :hamburger: :green_salad:
+
+This is a Chrome Extension checking the Food Standards Agency's ratings (Food Hygene Information Scheme in Scotland) on Deliveroo so you know what to expect when ordering.
 
 **Method**
 
-1, get restaurant data (name and address) from the deliveroo menu page
+1, get restaurant data (name and postcode) from the deliveroo menu page
 
-2, send request with name and address to FSA's API
+2, send request with name and postcode to FSA's API
 
 3, get the rating and display it somewhere on the deliveroo menu page
+
+**Features/todo**
+
+:white_medium_square: Welsh language support
+
+:white_medium_square: Image to link the result on FSA's website for more info
+
+:white_medium_square: Tests. There are a **bunch** of edgecases out there that are getting a bit tedious to test manually
 
 ## :book: Dev Diary
 
 ### Day 0 - Why am I doing this?
-
-Ordering an icecream at 11pm: great
-Not paying your drivers a living wage: not so great
-Giving people food poisoning: evil
 
 Being a UX developer I think users deserve to know if they are taking the food poisoning lottery. There should be an easy and quick way to check for this. Before you walk into a restaurant you can make this decision easily by looking at the mandatory FSA rating sign in the window. So why can't you get the same convenience whilst you are lying on your couch in your pajamas feeling too disgusting or lazy to pop ou for some takeaway?
 
@@ -54,7 +60,7 @@ fetch(`${apiURL}?name=${restaurantName}&address=${restaurantAddress}&pageSize=1`
 })
 ```
 
-#### :poop: Today's Challenge:
+#### :poop: Today's Challenge
 
 - Deliveroo has the full address displayed in one `<small>` tag.
 - The FSA API takes either a street name, city or **properly formatted** postcode as an address.
@@ -99,7 +105,7 @@ After a little fiddling with cloud storage and some agonising over whether to us
 ![Food Standards Agency's rating image displayed on Burger King's Deliveroo page](https://res.cloudinary.com/du2vvjrb5/image/upload/v1569250206/blog/success_j78y07.png)
 
 
-#### :poop: Today's Challenge:
+#### :poop: Today's Challenge
 
 You know how I've decided to go for the address instead of mucking around with trying to reformat the postcodes? Well...
 
@@ -129,7 +135,7 @@ const restaurantAddress = deliverooAddress.slice(0,chopLocation)
 
 This was **exactly** what I've wanted to avoid: spending at least an hour immersing myself in the magical wonders of the UK postcode system. Thanks to our lord and saviour Stackoverflow, Regex and a person going by the name of [Borodin](https://stackoverflow.com/questions/10700950/reformat-string-containing-uk-postcode-using-regex), in the end, this turned into a rather uncomplicated matter.
 
-#### Quick rundown on what I've managed to accomplish today:
+#### What I've managed to accomplish today:
 - Created a content script (script that runs when you are on a /menu page on Deliveroo)
 - Uploaded the FSA rating pics from 0-5 to Cloudinary and added a function to display them in the *restaurant description* section.
 - Changed to be postcode based instead of address based
@@ -139,3 +145,45 @@ What's left?
 - Add more info next to the rating, a link maybe but most importantly address data from FSA's API to make sure there was no mix-up (i.e. *showing rating for KFC in E1 7QX*)
 - Right now the extension only spits out an image if there is a 0-5 rating available. FSA has more ratings such as *pass* that needs to be added
 - Also, would be nice to add Welsh language support later on
+
+### Day 4 - I can see the finish line :checkered_flag:
+
+Jk, this is development, it's never over. But hey, maybe I'm a tad closer to publishing this thing.
+
+Let's start with the best part:
+
+#### :poop: Today's Challenge
+Originally the image sat below the restaurant description but it turned out not all places have a description so then I wanted the rating image to sit right under the restaurant type and address. **However**, that part is all `display:flex` in `row` so no amount of `align-self` could magically put the image under the metadata. Instead of trying to bodge it with css I've decided to solve it through DOM manipulation. Somehow, I had to break free of that div and create a sibling div. Long story short, I've learned a new thing in javascript: `node.insertBefore`
+
+This is a monster but it works:
+
+```
+
+// 1. create a div
+const ratingDiv = document.createElement('div')
+
+// 2. add class to the new div
+ratingDiv.classList.add('fsa__rating')
+
+// 3. find the sibling/child div
+const childDiv = document.querySelector('.restaurant__metadata')
+
+// 4. find the parent
+const container = childDiv.parentNode
+
+// 5. in the parent insert the new div before the sibling
+container.insertBefore(ratingDiv, childDiv)
+
+```
+
+The new display:
+
+![rating image displayed and aligned properly right after restaurant name](https://res.cloudinary.com/du2vvjrb5/image/upload/v1569333893/blog/notfound_oy6vsy.png)
+
+#### What I've managed to accomplish today:
+- Added a regex in the restaurant name's chop location variable because it turns out Deliveroo sometimes puts brackets in the name as well...
+  
+```
+const restaurantChopLocation = deliverooRestaurantName.search(/(-|\()/g)
+```
+- The API fetch now has a condition that checks if there's a result, if not then a custom made "no result" image pops up *(see above image)*
