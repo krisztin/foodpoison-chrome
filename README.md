@@ -1,20 +1,14 @@
-# Am I getting food poisoning? :taco: :nauseated_face:
+# Am I getting food poisoning? :taco: :nauseated_face: <!-- omit in toc -->
 
 Spend less time on the :toilet: loo and more time enjoying the amazing variety of cuisines available in the UK :taco: :pizza: :hamburger: :green_salad:
 
-This is a Chrome Extension checking the Food Standards Agency's ratings (Food Hygiene Information Scheme in Scotland) on Deliveroo so you know what to expect when ordering.
+Chrome Extension checking the Food Standards Agency's ratings (Food Hygiene Information Scheme in Scotland) on Deliveroo so you know what to expect when ordering.
 
-**Method**
-
-1, get restaurant data (name and postcode) from the deliveroo menu page
-
-2, send request with name and postcode to FSA's API
-
-3, get the rating and display it somewhere on the deliveroo menu page
+![burger king on deliveroo with food hygiene rating displayed](https://res.cloudinary.com/du2vvjrb5/image/upload/v1569341763/blog/final_zjcnrq.png)
 
 **Features/todo**
 
-:ballot_box_with_check: Displays Food Hygiene Ratings for English and Welsh restaurants/establishments
+:ballot_box_with_check: Displays Food Hygiene Ratings for English and Welsh restaurants/establishments (in English)
 
 :ballot_box_with_check: Displays the Food Hygiene Information Scheme certificates for Scottish restaurants/establishments
 
@@ -24,13 +18,33 @@ This is a Chrome Extension checking the Food Standards Agency's ratings (Food Hy
 
 :white_medium_square: Tests. There are a **bunch** of edgecases out there that are getting a bit tedious to test manually
 
+## Table of contents <!-- omit in toc -->
+
+- [:book: Dev Diary](#book-dev-diary)
+  - [Day 0 - Why am I doing this?](#day-0---why-am-i-doing-this)
+  - [Day 1 - Maybe I can do this?](#day-1---maybe-i-can-do-this)
+  - [Day 2 - The importance of properly formatting your data](#day-2---the-importance-of-properly-formatting-your-data)
+    - [:poop: Today's Challenge](#poop-todays-challenge)
+  - [Day 3 - The first taste of success :tada: :tada: :tada:](#day-3---the-first-taste-of-success-tada-tada-tada)
+    - [:poop: Today's Challenge](#poop-todays-challenge-1)
+    - [What I've managed to accomplish today:](#what-ive-managed-to-accomplish-today)
+  - [Day 4 - I can see the finish line :checkered_flag:](#day-4---i-can-see-the-finish-line-checkeredflag)
+    - [:poop: Today's Challenge](#poop-todays-challenge-2)
+    - [What I've managed to accomplish today:](#what-ive-managed-to-accomplish-today-1)
+
 ## :book: Dev Diary
 
 ### Day 0 - Why am I doing this?
 
-Being a UX developer I think users deserve to know if they are taking the food poisoning lottery. There should be an easy and quick way to check for this. Before you walk into a restaurant you can make this decision easily by looking at the mandatory FSA rating sign in the window. So why can't you get the same convenience whilst you are lying on your couch in your pajamas feeling too disgusting or lazy to pop ou for some takeaway?
+Being a UX developer I'm all for making the whole ordering experience enjoyable, and that includes the time after you've consumed whatever you've got delivered. People should know what their odds are in the food poisoning lottery. Before you walk into a restaurant you can make this decision easily by looking at the FSA rating/certificate sign in the window. So why can't you get the same convenience whilst you are lying on the couch in your pajamas feeling too disgusting or lazy to pop out for some takeaway?
 
-I've had enough of Deliveroo's reluctance of displaying the Food Standards Agency's ratings on their website so I've decided to make a Chrome Extension.
+And no, this is not enough:
+
+![restaurant notes link at the bottom of the page which you have to click to see a link to the FSA rating homepage where you have to search](https://res.cloudinary.com/du2vvjrb5/image/upload/v1569340570/blog/notes_s5pbvc.png)
+
+And note that that **link to the Food Standards Agency's website is to the homepage _not_ to the restaurant's info page**.
+
+So I've decided to make a Chrome Extension.
 
 Only problem: I've never in my life made an Extension before. But hey, I know coding...sort of.
 
@@ -44,7 +58,7 @@ This should be easy:
 
 ### Day 1 - Maybe I can do this?
 
-So, I've gone through a [nice little tutorial](https://developer.chrome.com/extensions/getstarted) on the Chrome Dev site and I may not be too stupid to do this.
+I've gone through a [nice little tutorial](https://developer.chrome.com/extensions/getstarted) on the Chrome Dev site and I may not be too stupid to do this.
 
 I've put together the basics, have a script running and the extension activates when you go on Deliveroo's website.
 
