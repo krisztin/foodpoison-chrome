@@ -61,7 +61,7 @@ function getImage(rating) {
   let imgFile = ""
   const cloudURLen = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_'
   const cloudURLsc = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569264600/fsa-gb/fhis_'
-  const imgFile404 = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569331455/fsa-gb/not_found_ose9kv.png'
+  const imgFile404 = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569339742/fsa-gb/not_found_zs8vgr.pngs'
   const [
     imgFileEN0,
     imgFileEN1,
