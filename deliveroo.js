@@ -47,7 +47,7 @@ fetch(
     if(result.establishments.length == 0) {
       rating = "no result";
       } else {
-    rating = result.establishments[0].RatingValue
+      rating = result.establishments[0].RatingValue
       }
     getImage(rating)
   })
@@ -55,11 +55,13 @@ fetch(
     console.log(error)
   })
 
-// GETTING THE IMAGE CORRESPONDING WITH RATING
+// OUTPUTTING THE IMAGE CORRESPONDING WITH RATING
 function getImage(rating) {
+  const output = document.querySelector('.fsa__rating')
   let imgFile = ""
   const cloudURLen = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_'
   const cloudURLsc = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569264600/fsa-gb/fhis_'
+  const imgFile404 = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569331455/fsa-gb/not_found_ose9kv.png'
   const [
     imgFileEN0,
     imgFileEN1,
@@ -79,8 +81,8 @@ function getImage(rating) {
     cloudURLen + '3_en-gb_k4r8cm.jpg',
     cloudURLen + '4_en-gb_qyjebk.jpg',
     cloudURLen + '5_en-gb_dut0hk.jpg',
-    cloudURLsc + 'fhis_pass_d82nu0.jpg',
-    cloudURLsc + 'fhis_improvement_required_gpotup.jpg',
+    cloudURLsc + 'pass_d82nu0.jpg',
+    cloudURLsc + 'improvement_required_gpotup.jpg',
     cloudURLsc + 'awaiting_publication_f90cf0.jpg',
     cloudURLsc + 'awaiting_inspection_meltsi.jpg',
     cloudURLsc + 'exempt_b5qzkj.jpg'
@@ -132,11 +134,13 @@ function getImage(rating) {
       imgFile = imgFileExempt
       displayImg()
       break
+    case 'no result':
     default:
-      output.innerHTML += `<p>Rating not found</p>`
+      imgFile = imgFile404
+      displayImg()
   }
 
   function displayImg(){
-    output.innerHTML += `<img src="${imgFile}" alt="FSA rating is ${rating}" width="150px" height="auto">`
+    output.innerHTML += `<img src="${imgFile}" alt="Food Hygene rating is ${rating}" width="150px" height="auto">`
   }
 }
