@@ -9,16 +9,16 @@ container.insertBefore(ratingDiv, childDiv)
 // API variable ========================================================================================
 const apiURL = 'https://api.ratings.food.gov.uk/establishments'
 
-// RESTAURANT NAME variables
-// Deliveroo adds a location name (i.e. Whitechapel) to chain restaurants which the FSA API cannot handle
-const deliverooRestaurantName = document.querySelector('.restaurant__name')
-  .innerText
-const restaurantChopLocation = deliverooRestaurantName.indexOf('-')
+// RESTAURANT NAME variables ============================================================================
+// Deliveroo adds additional info (i.e. a location name such as Whitechapel) to chain restaurants
+// the FSA API cannot handle these
+const deliverooRestaurantName = document.querySelector('.restaurant__name').innerText
+  // regex to search for either - or (
+const restaurantChopLocation = deliverooRestaurantName.search(/(-|\()/g)
   //-1 to remove space
-const restaurantName = deliverooRestaurantName.slice(0, restaurantChopLocation - 1
-)
+const restaurantName = deliverooRestaurantName.slice(0, restaurantChopLocation - 1)
 
-// RESTAURANT POSTCODE variables
+// RESTAURANT POSTCODE variables =========================================================================
 // FSA's API takes either a street address OR a postcode in proper format which Deliveroo does not provide
 // see the whole rant in the readme.md
 const deliverooAddress = document.querySelector('.address').innerText
