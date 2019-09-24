@@ -1,6 +1,13 @@
-const output = document.querySelector('.restaurant__description')
+// RESULT IMAGE CONTAINER variables
+// convoluted way of adding a new div on Deliveroo because flex, that's why
+const ratingDiv = document.createElement('div')
+ratingDiv.classList.add('fsa__rating')
+const childDiv = document.querySelector('.restaurant__metadata')
+const container = childDiv.parentNode
+container.insertBefore(ratingDiv, childDiv)
+
+// API variable ========================================================================================
 const apiURL = 'https://api.ratings.food.gov.uk/establishments'
-let rating = 0
 
 // RESTAURANT NAME variables
 // Deliveroo adds a location name (i.e. Whitechapel) to chain restaurants which the FSA API cannot handle
