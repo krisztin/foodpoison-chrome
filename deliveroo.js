@@ -40,11 +40,15 @@ fetch(
     headers: {
       'x-api-version': 2
     }
-  }
-)
+  })
   .then(response => response.json())
   .then(result => {
+    let rating = ""
+    if(result.establishments.length == 0) {
+      rating = "no result";
+      } else {
     rating = result.establishments[0].RatingValue
+      }
     getImage(rating)
   })
   .catch(error => {
