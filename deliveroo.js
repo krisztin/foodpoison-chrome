@@ -43,25 +43,28 @@ fetch(
   })
   .then(response => response.json())
   .then(result => {
+    let restaurantID = ""
     let rating = ""
+    
     if(result.establishments.length == 0) {
       rating = "no result";
       } else {
       rating = result.establishments[0].RatingValue
+      restaurantID = result.establishments[0].FHRSID
       }
-    getImage(rating)
+    getImage(rating, restaurantID)
   })
   .catch(error => {
     console.log(error)
   })
 
 // OUTPUTTING THE IMAGE CORRESPONDING WITH RATING
-function getImage(rating) {
+function getImage(rating, restaurantID) {
   const output = document.querySelector('.fsa__rating')
   let imgFile = ""
   const cloudURLen = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569247309/fsa-gb/fhrs_'
   const cloudURLsc = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569264600/fsa-gb/fhis_'
-  const imgFile404 = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569339742/fsa-gb/not_found_zs8vgr.pngs'
+  const imgFile404 = 'https://res.cloudinary.com/du2vvjrb5/image/upload/v1569339742/fsa-gb/not_found_zs8vgr.png'
   const [
     imgFileEN0,
     imgFileEN1,
@@ -137,10 +140,15 @@ function getImage(rating) {
     case 'no result':
     default:
       imgFile = imgFile404
-      displayImg()
+      output.innerHTML += `<img src="${imgFile}" alt="No rating or certificate found" width="150px" height="auto"></img>`
   }
 
   function displayImg(){
-    output.innerHTML += `<img src="${imgFile}" alt="Food Hygene rating is ${rating}" width="150px" height="auto">`
+    output.innerHTML += `<a href="https://ratings.food.gov.uk/business/en-GB/${restaurantID}"
+                         target="_blank"
+                         title="${restaurantName}'s FSA information page"
+                         aria-label="go to ${restaurantName}'s FSA information page">
+                          <img src="${imgFile}" alt="Food Hygene rating is ${rating}" width="150px" height="auto">
+                        </a>`
   }
 }
