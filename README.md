@@ -1,8 +1,10 @@
+![extension logo](https://res.cloudinary.com/du2vvjrb5/image/upload/v1569519938/fp_logos/fp_logo_txt_xrcuky.png)
+
 # Am I getting food poisoning? :taco: :nauseated_face: <!-- omit in toc -->
 
-Spend less time on the :toilet: loo and more time enjoying the amazing variety of cuisines available in the UK :taco: :pizza: :hamburger: :green_salad:
+Spend less time on the loo and more time enjoying the amazing variety of cuisines available in the UK on Deliveroo :taco: :pizza: :hamburger: :green_salad:
 
-Chrome Extension checking the Food Standards Agency's ratings (Food Hygiene Information Scheme in Scotland) on Deliveroo so you know what to expect when ordering.
+This is a Chrome Extension checking the Food Standards Agency's ratings (Food Hygiene Information Scheme in Scotland) on Deliveroo so you know what to expect when ordering.
 
 ![burger king on deliveroo with food hygiene rating displayed](https://res.cloudinary.com/du2vvjrb5/image/upload/v1569341763/blog/final_zjcnrq.png)
 
@@ -12,11 +14,15 @@ Chrome Extension checking the Food Standards Agency's ratings (Food Hygiene Info
 
 :ballot_box_with_check: Displays the Food Hygiene Information Scheme certificates for Scottish restaurants/establishments
 
-:white_medium_square: Welsh language support
+:ballot_box_with_check: Image to link the result on FSA's website for more info
 
-:white_medium_square: Image to link the result on FSA's website for more info
+:white_medium_square: Welsh language/rating support
 
 :white_medium_square: Tests. There are a **bunch** of edgecases out there that are getting a bit tedious to test manually
+
+:white_medium_square: Use GraphQL to cut down on unnecessary data retrieval
+
+:white_medium_square: Sometimes postcodes don't match between Deliveroo and FSA. Some fuzziness should be introduced.
 
 ## Table of contents <!-- omit in toc -->
 
@@ -31,6 +37,8 @@ Chrome Extension checking the Food Standards Agency's ratings (Food Hygiene Info
   - [Day 4 - I can see the finish line :checkered_flag:](#day-4---i-can-see-the-finish-line-checkeredflag)
     - [:poop: Today's Challenge](#poop-todays-challenge-2)
     - [What I've managed to accomplish today:](#what-ive-managed-to-accomplish-today-1)
+  - [Day 5 - I'm not alone...and this extension is not unique](#day-5---im-not-aloneand-this-extension-is-not-unique)
+    - [What I've managed to accomplish today:](#what-ive-managed-to-accomplish-today-2)
 
 ## :book: Dev Diary
 
@@ -210,3 +218,14 @@ const restaurantChopLocation = deliverooRestaurantName.search(/(-|\()/g)
 
 - The API fetch now has a condition that checks if there's a result, if not then a custom made "no result" image pops up _(see above image)_
 - Proper (final?) placement of the rating/certificate image
+
+### Day 5 - I'm not alone...and this extension is not unique
+
+After reading up on how to publish an extension (surprisingly easy) I've taken one last peak at the results when you type in Deliveroo. So turns out someone else has aleady made a similar extension (only theirs is a tad better as it works with Just Eat as well, not to mention the code quality). Problem was, they used the phrase *scores on doors* which I've never heard before for Food Hygiene Ratings so I dismissed that extension the first time I've checked. Oh well.
+
+#### What I've managed to accomplish today:
+
+- Learned how to publish an extension. And then found a billion little reasons not to publish just yet.
+- When clicking the rating you are now taken to the FSA information page on it.
+- Got a bit upset about the whole duplicate issue and then totally did not cry about how much better his code was...:sweat_smile:
+
