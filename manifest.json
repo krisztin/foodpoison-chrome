@@ -2,13 +2,24 @@
   "name": "Am I getting food poisoning?",
   "version": "1.0",
   "description": "See the Food Standards Agency rating before ordering on Deliveroo",
-  "permissions": ["declarativeContent", "activeTab"],
-  "content_scripts": [{
-    "matches": ["https://deliveroo.co.uk/menu/*"],
-    "js": ["deliveroo.js"]
-  }],
+  "permissions": [
+    "declarativeContent",
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://deliveroo.co.uk/menu/*"
+      ],
+      "js": [
+        "deliveroo.js"
+      ]
+    }
+  ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "background.js"
+    ],
     "persistent": false
   },
   "page_action": {
@@ -18,8 +29,7 @@
       "48": "img/fp_logo48.png",
       "128": "img/fp_logo128.png"
     },
-    "default_title": "Food Safety rating",
-    "default_popup": "popup.html"
+    "default_title": "Food Safety rating"
   },
   "icons": {
     "16": "img/fp_logo16.png",
