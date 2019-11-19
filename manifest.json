@@ -1,7 +1,7 @@
 {
-  "name": "Am I getting food poisoning?",
+  "name": "Hygeine",
   "version": "1.0",
-  "description": "See the Food Standards Agency rating before ordering on Deliveroo",
+  "description": "See the Food Hygiene Rating on Deliveroo's menu pages",
   "permissions": [
     "declarativeContent",
     "activeTab"
