@@ -8,6 +8,9 @@ This is a Chrome Extension checking the Food Standards Agency's ratings (Food Hy
 
 ![burger king on deliveroo with food hygiene rating displayed](https://res.cloudinary.com/du2vvjrb5/image/upload/v1569341763/blog/final_zjcnrq.png)
 
+## Download <!-- omit in toc -->
+If you regularly use Deliveroo then do yourself a favour and [download this light, little extension from the Chrome Web Store](https://chrome.google.com/webstore/detail/hygeine/hbjddnbppdmlhlpbagfoghiemjemgfmk) now.
+
 **Features/todo**
 
 :ballot_box_with_check: Displays Food Hygiene Ratings for English and Welsh restaurants/establishments (in English)
@@ -39,6 +42,7 @@ This is a Chrome Extension checking the Food Standards Agency's ratings (Food Hy
     - [What I've managed to accomplish today:](#what-ive-managed-to-accomplish-today-1)
   - [Day 5 - I'm not alone...and this extension is not unique](#day-5---im-not-aloneand-this-extension-is-not-unique)
     - [What I've managed to accomplish today:](#what-ive-managed-to-accomplish-today-2)
+  - [Day 6 - Published](#day-6---published)
 
 ## :book: Dev Diary
 
@@ -54,7 +58,7 @@ And note that that **link to the Food Standards Agency's website is to the homep
 
 So I've decided to make a Chrome Extension.
 
-Only problem: I've never in my life made an Extension before. But hey, I know coding...sort of.
+Only problem: I've never in my life made an Extension before. But hey, I know how to code...sort of.
 
 This should be easy:
 
@@ -96,16 +100,16 @@ Naturally, I'd go for using the postcode as that's pretty unique. _However_, Del
 Let me demonstrate the cause of my headache with a _Burger King_ "restaurant" with the address Deliveroo provides: _90 Whitechapel High St, London, London, E17RA._
 
 ```
-let restaurantAddress = "90 Whitechapel High St, London, London, E17RA"
+const restaurantAddress = "90 Whitechapel High St, London, London, E17RA"
 // FAIL! FSA API will send me an empty array
 
-let restaurantAddress = "E17RA"
+const restaurantAddress = "E17RA"
 // FAIL! Another empty array. FSA expects the proper formatting which is E1 7RA
 
-let restaurantAddress = "90 Whitechapel High St, London"
+const restaurantAddress = "90 Whitechapel High St, London"
 // FAIL! Yep, still empty
 
-let restaurantAddress = "90 Whitechapel High St"
+const restaurantAddress = "90 Whitechapel High St"
 // SUCCESS!
 
 ```
@@ -229,3 +233,10 @@ After reading up on how to publish an extension (surprisingly easy) I've taken o
 - When clicking the rating you are now taken to the FSA information page on it.
 - Got a bit upset about the whole duplicate issue and then totally did not cry about how much better his code was...:sweat_smile:
 
+### Day 6 - Published
+
+Yeah, so this happened :sunglasses:
+
+![extension visible published on the Chrome Web Store](https://res.cloudinary.com/du2vvjrb5/image/upload/v1574189200/blog/fp_screenshotpublished_eqmzlq.jpg)
+
+**(Download version 1.0 now)[https://chrome.google.com/webstore/detail/hygeine/hbjddnbppdmlhlpbagfoghiemjemgfmk])
