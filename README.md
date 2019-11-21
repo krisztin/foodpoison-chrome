@@ -237,6 +237,8 @@ After reading up on how to publish an extension (surprisingly easy) I've taken o
 
 Yeah, so this happened :sunglasses:
 
+I actually had to pay a couple of $$$ to be able to put this out on the Web Store. I've had a bunch of Play Store Credit accumulated from Google Surveys and thought this would be a great way to spend them. Google, on the other hand, did not agree. :expressionless:
+
 ![extension visible published on the Chrome Web Store](https://res.cloudinary.com/du2vvjrb5/image/upload/v1574189200/blog/fp_screenshotpublished_eqmzlq.jpg)
 
-**(Download version 1.0 now)[https://chrome.google.com/webstore/detail/hygeine/hbjddnbppdmlhlpbagfoghiemjemgfmk])
+**[Download version 1.0](ttps://chrome.google.com/webstore/detail/hygeine/hbjddnbppdmlhlpbagfoghiemjemgfmk)**
