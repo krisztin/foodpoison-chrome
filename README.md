@@ -241,4 +241,4 @@ I actually had to pay a couple of $$$ to be able to put this out on the Web Stor
 
 ![extension visible published on the Chrome Web Store](https://res.cloudinary.com/du2vvjrb5/image/upload/v1574189200/blog/fp_screenshotpublished_eqmzlq.jpg)
 
-[Download version 1.0](https://chrome.google.com/webstore/detail/hygeine/hbjddnbppdmlhlpbagfoghiemjemgfmk) from the Chrome Web Store.
+You can [download version 1.0](https://chrome.google.com/webstore/detail/hygeine/hbjddnbppdmlhlpbagfoghiemjemgfmk) from the Chrome Web Store.
